@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Virti's Oahu Events — Apr 22–30, 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:linear-gradient(170deg,#fdf8f3 0%,#fef6ee 40%,#f9f1e8 100%);min-height:100vh;font-family:'Outfit',sans-serif;color:#000}
+::-webkit-scrollbar{display:none}
+.hd{text-align:center;padding:40px 24px 16px}
+.hd p{font-size:11px;letter-spacing:5px;text-transform:uppercase;font-weight:700;margin-bottom:8px}
+.hd h1{font-size:clamp(28px,6vw,42px);font-weight:700;margin:0 0 4px;line-height:1.15}
+.hd .sub{font-size:13px;font-weight:600;opacity:.5;margin-top:6px}
+.tabs{display:flex;overflow-x:auto;gap:4px;padding:8px 12px 14px;scrollbar-width:none}
+.tab{flex:0 0 auto;padding:10px 14px;border-radius:12px;font-family:'Outfit',sans-serif;font-size:12px;font-weight:700;cursor:pointer;text-align:center;min-width:58px;transition:all .2s ease;border:2px solid rgba(0,0,0,.08);background:rgba(0,0,0,.02);color:#000}
+.tab.a{background:#000;color:#fff;border-color:#000}
+.tab .dy{font-size:10px;opacity:.7;margin-bottom:2px}
+.tab .ct{font-size:9px;opacity:.5;margin-top:2px}
+.dh{padding:8px 20px 0}
+.dh h2{font-size:22px;font-weight:700;display:inline}
+.dh .lb{font-size:13px;font-weight:700;background:rgba(0,0,0,.06);padding:4px 10px;border-radius:100px;margin-left:10px}
+.dh .ec{font-size:12px;font-weight:600;opacity:.5;margin:6px 0 16px}
+.lst{padding:0 16px 40px;max-width:640px;margin:0 auto}
+.ev{margin-bottom:10px;background:rgba(0,0,0,.02);border-radius:14px;border:1.5px solid rgba(0,0,0,.06);padding:16px 18px}
+.ev-top{display:flex;align-items:flex-start;justify-content:space-between;gap:10px;margin-bottom:8px}
+.ev-top h3{font-size:16px;font-weight:700;margin:0;flex:1}
+.tg{font-size:10px;font-weight:700;color:#fff;padding:3px 10px;border-radius:100px;white-space:nowrap;flex-shrink:0}
+.ev-meta{display:flex;flex-wrap:wrap;gap:4px 16px;margin-bottom:8px;font-size:12px;font-weight:600}
+.ev p{font-size:13px;font-weight:500;line-height:1.55;opacity:.8}
+.ev a{display:inline-flex;align-items:center;gap:4px;margin-top:10px;font-size:12px;font-weight:700;text-decoration:none;padding:6px 14px;border-radius:100px}
+.ft{text-align:center;padding:0 24px 40px}
+.ft-line{width:40px;height:2px;background:#000;margin:0 auto 14px;opacity:.2}
+.ft p{font-size:11px;letter-spacing:2px;text-transform:uppercase;font-weight:700}
+</style>
+</head>
+<body>
+<div class="hd"><p>Oahu Events</p><h1>April 22–30, 2026</h1><div class="sub" id="tot"></div></div>
+<div class="tabs" id="tabs"></div>
+<div class="dh" id="dh"></div>
+<div class="lst" id="lst"></div>
+<div class="ft">
+<a href="index.html" style="display:inline-block;margin-bottom:20px;padding:14px 28px;background:#000;color:#fff;font-family:'Outfit',sans-serif;font-size:13px;font-weight:700;border-radius:100px;text-decoration:none;letter-spacing:0.5px">🌊 View Activities Guide (100+ spots) →</a>
+<div class="ft-line"></div><p>Virti's Oahu Trip</p></div>
+<script>
+const TC={Festival:"#e11d48",Concert:"#7c3aed",Free:"#059669",Culture:"#d97706",Art:"#db2777",Theatre:"#6366f1",Comedy:"#ea580c",Nightlife:"#be185d",Food:"#dc2626",Family:"#0891b2",Nature:"#16a34a",Shopping:"#9333ea",Hula:"#0d9488",Class:"#7e22ce",Show:"#c026d3"};
+const D=[
+{date:"Apr 22",day:"Wednesday",label:"Earth Day 🌍",ev:[
+{n:"Kilohana Hula Show",t:"9:30–10:30 AM",w:"Kūhiō Beach Hula Mound",d:"Free world-class morning hula with live instruments and ocean backdrop. Mon–Wed weekly.",g:"Hula"},
+{n:"Free Lauhala Weaving Class",t:"11:00 AM",w:"Royal Hawaiian Center, Bldg C Level 3",d:"Learn traditional Hawaiian lauhala weaving. Free, ages 10+. Wednesdays weekly.",g:"Class",l:"https://www.royalhawaiiancenter.com/"},
+{n:"Ala Moana Center Daily Hula Show",t:"5:00–5:20 PM",w:"Ala Moana Centerstage",d:"Short daily hula show featuring kahiko and modern 'auana styles. Free.",g:"Hula",l:"https://www.alamoanacenter.com/"},
+{n:"Ala Moana Pau Hana Music Series",t:"5:30–6:30 PM",w:"Ala Moana ʻEwa Wing Stage",d:"Live Hawaiian music to kick off the evening. Free, daily.",g:"Free",l:"https://www.alamoanacenter.com/"},
+{n:"O Nā Lani Sunset Stories Hula Show",t:"6:00 PM",w:"International Market Place",d:"Torch-lighting ceremony at sundown, then Polynesian music and dance beneath a banyan tree. Mon/Wed/Fri.",g:"Hula",l:"https://shopinternationalmarketplace.com/"},
+{n:"Earth Day Celebrations",t:"All Day",w:"Various locations island-wide",d:"Beach cleanups, sustainability fairs, and eco-events across Oahu.",g:"Culture",l:"https://www.gohawaii.com/islands/oahu/events"},
+{n:"Pierce the Veil — World Tour",t:"Evening",w:"Neal S. Blaisdell Arena",d:"Rock band Pierce the Veil live in Honolulu.",g:"Concert",l:"https://www.blaisdellcenter.com/"},
+{n:"Dave Landau — Comedy",t:"7:00 & 9:30 PM",w:"Blue Note Hawaii",d:"Stand-up comedy. Night 1 of 2.",g:"Comedy",l:"https://www.bluenotejazz.com/hawaii/"},
+{n:"Panji and the Lost Princess",t:"Evening",w:"Kennedy Theatre, UH Manoa",d:"Balinese shadow puppetry with dance, acting, and live gamelan. Through Apr 26.",g:"Theatre",l:"https://manoa.hawaii.edu/liveonstage/"},
+{n:"Blu's Hanging",t:"Evening",w:"Kumu Kahua Theatre",d:"Stage adaptation of the acclaimed Hawaii novel. Final week — closes Apr 26.",g:"Theatre",l:"https://www.kumukahua.org/"},
+{n:"Visiting Master: Ray Carbullido",t:"Ongoing",w:"Halekulani Hotel",d:"Multimedia art exhibit 'Explorations of Self' — through May 2.",g:"Art",l:"https://www.halekulani.com/"},
+{n:"Aloha Bricks '26 (LEGO Exhibition)",t:"9 AM–5 PM",w:"Bishop Museum",d:"Massive LEGO exhibition with Hawaiian-themed builds. Running all year.",g:"Family",l:"https://www.bishopmuseum.org/Bricks/"},
+{n:"House of Sakura Pop-Up Bar",t:"Evenings",w:"Prince Waikiki",d:"Cherry blossom-themed pop-up bar with specialty cocktails. Through May 31.",g:"Nightlife",l:"https://www.princewaikiki.com/"},
+{n:"Dine-In SPAM® Event",t:"All week",w:"Waikiki restaurants",d:"Special SPAM dishes at top restaurants. Apr 18–May 3.",g:"Food",l:"https://www.spamjamhawaii.com/"}
+]},
+{date:"Apr 23",day:"Thursday",label:"",ev:[
+{n:"Kilohana Hula Show",t:"9:30–10:30 AM",w:"Kūhiō Beach Hula Mound",d:"Free morning hula. Runs Mon–Wed but check schedule — may have Thu shows too.",g:"Hula"},
+{n:"Free Keiki Hula Class (Kids)",t:"11:00 AM",w:"Royal Hawaiian Center, Royal Grove",d:"Free hula class for kids ages 5–10. Thursdays weekly.",g:"Class",l:"https://www.royalhawaiiancenter.com/"},
+{n:"Ala Moana Center Daily Hula Show",t:"5:00–5:20 PM",w:"Ala Moana Centerstage",d:"Free daily hula show.",g:"Hula",l:"https://www.alamoanacenter.com/"},
+{n:"Ala Moana Pau Hana Music Series",t:"5:30–6:30 PM",w:"Ala Moana ʻEwa Wing Stage",d:"Free daily live Hawaiian music.",g:"Free"},
+{n:"Hōlei Trio at Royal Grove",t:"5:30–6:30 PM",w:"Royal Hawaiian Center, Royal Grove",d:"Hawaiian music with hula. Thursdays weekly. Free.",g:"Hula",l:"https://www.royalhawaiiancenter.com/"},
+{n:"Dave Landau — Comedy (Night 2)",t:"7:00 & 9:30 PM",w:"Blue Note Hawaii",d:"Stand-up comedy at Waikiki's premier live music venue.",g:"Comedy",l:"https://www.bluenotejazz.com/hawaii/"},
+{n:"Kaka'ako Thursday Fitness",t:"Afternoon",w:"Kaka'ako Waterfront Park",d:"Free outdoor fitness session with instructor. Bring towel and mat.",g:"Free"},
+{n:"Panji and the Lost Princess",t:"Evening",w:"Kennedy Theatre, UH Manoa",d:"Balinese shadow puppetry with live gamelan.",g:"Theatre",l:"https://manoa.hawaii.edu/liveonstage/"},
+{n:"Blu's Hanging",t:"Evening",w:"Kumu Kahua Theatre",d:"Acclaimed Hawaii stage production. Closing this week.",g:"Theatre",l:"https://www.kumukahua.org/"},
+{n:"Royal Hawaiian Band",t:"Check schedule",w:"Various Honolulu locations",d:"Free performances at Ala Moana, Iolani Palace, or Kapiolani Park.",g:"Free",l:"https://www.rhb-music.com/"}
+]},
+{date:"Apr 24",day:"Friday",label:"🎆 Fireworks Night",ev:[
+{n:"Free Lei Making Class",t:"11:00 AM",w:"Royal Hawaiian Center, Bldg C Level 3",d:"Learn to make a traditional Hawaiian lei. Free, ages 10+. Fridays weekly.",g:"Class",l:"https://www.royalhawaiiancenter.com/"},
+{n:"Royal Hawaiian Band at ʻIolani Palace",t:"12:00–1:00 PM",w:"ʻIolani Palace Grounds",d:"Free concert on the beautiful palace grounds. A Waikiki Friday tradition.",g:"Free",l:"https://www.rhb-music.com/"},
+{n:"Ala Moana Center Daily Hula Show",t:"5:00–5:20 PM",w:"Ala Moana Centerstage",d:"Free daily hula.",g:"Hula"},
+{n:"Ala Moana Pau Hana Music Series",t:"5:30–6:30 PM",w:"Ala Moana ʻEwa Wing Stage",d:"Free live Hawaiian music.",g:"Free"},
+{n:"O Nā Lani Sunset Stories Hula Show",t:"6:00 PM",w:"International Market Place",d:"Torch-lighting + Polynesian dance beneath a banyan tree. Mon/Wed/Fri.",g:"Hula",l:"https://shopinternationalmarketplace.com/"},
+{n:"Kawaii Kon 2026 — Day 1",t:"5:00 PM onwards",w:"Hawaii Convention Center",d:"Hawaii's biggest anime, manga & Japanese pop culture convention. Panels, cosplay, Artist Alley, concerts, gaming. Opens 5pm (construction delay).",g:"Festival",l:"https://kawaiikon.com/"},
+{n:"Art After Dark",t:"6:00–9:00 PM",w:"Honolulu Museum of Art",d:"Monthly after-hours art party with DJ, popup bars, food. Last Friday of the month.",g:"Art",l:"https://honolulumuseum.org/"},
+{n:"Hilton Friday Night Fireworks",t:"7:45 PM",w:"Hilton Hawaiian Village, Waikiki",d:"Free weekly fireworks over the lagoon. Watch from Ala Moana Beach Park for best views.",g:"Free",l:"https://www.hiltonhawaiianvillage.com/"},
+{n:"Circa Humans 2.0",t:"8:00 PM",w:"Hawaii Theatre",d:"Breathtaking acrobatic circus-theatre. Ten bodies in a tightly woven choreography pushing physical limits. By Australian circus company Circa.",g:"Show",l:"https://www.hawaiitheatre.com/events/circa-humans-2-0/"},
+{n:"Cirque du Soleil: ʻAuana",t:"8:00 PM",w:"OUTRIGGER Waikiki Beachcomber Hotel",d:"Cirque du Soleil's Hawaii-inspired resident show. Acrobatics, music, and Hawaiian storytelling.",g:"Show",l:"https://www.cirquedusoleil.com/auana"},
+{n:"10 Ft. Ganja Plant / Double Tiger",t:"Evening",w:"HB Social Club",d:"Live reggae/dub music.",g:"Concert",l:"https://www.instagram.com/hbsocialclub/"},
+{n:"Panji and the Lost Princess",t:"Evening",w:"Kennedy Theatre, UH Manoa",d:"Balinese shadow puppetry. Second to last show.",g:"Theatre",l:"https://manoa.hawaii.edu/liveonstage/"},
+{n:"Blu's Hanging",t:"Evening",w:"Kumu Kahua Theatre",d:"Closing weekend.",g:"Theatre",l:"https://www.kumukahua.org/"},
+{n:"House of Sakura Pop-Up Bar",t:"Evenings",w:"Prince Waikiki",d:"Cherry blossom cocktails. Perfect Friday night.",g:"Nightlife",l:"https://www.princewaikiki.com/"}
+]},
+{date:"Apr 25",day:"Saturday",label:"🍖 SPAM JAM Day!",ev:[
+{n:"KCC Saturday Farmers Market",t:"7:30 AM–12:00 PM",w:"Kapiolani Community College",d:"Oahu's best farmers market — local produce, popup food, fresh poke, crafts.",g:"Free",l:"https://hfrfarmersmarkets.com/"},
+{n:"Waikiki SPAM JAM® Festival",t:"4:00–10:00 PM",w:"Kalakaua Ave, Waikiki",d:"Oahu's legendary street festival! SPAM dishes, 3 live music stages, hula, vendors, crafts, keiki activities. DRONE SHOW over Waikiki Beach at 9 PM. Free entry.",g:"Festival",l:"https://www.spamjamhawaii.com/"},
+{n:"Kawaii Kon 2026 — Day 2",t:"All Day",w:"Hawaii Convention Center",d:"Full day — anime panels, cosplay contests, Artist Alley, esports, concerts.",g:"Festival",l:"https://kawaiikon.com/"},
+{n:"Ala Moana Center Daily Hula Show",t:"5:00–5:20 PM",w:"Ala Moana Centerstage",d:"Free daily hula.",g:"Hula"},
+{n:"Kūhiō Beach Hula Show — CANCELLED",t:"6:30 PM",w:"Kūhiō Beach Hula Mound",d:"⚠️ Cancelled this Saturday due to Kalākaua Ave closure for SPAM JAM. Catch it Tuesday instead!",g:"Hula"},
+{n:"Cirque du Soleil: ʻAuana",t:"5:30 PM & 8:00 PM",w:"OUTRIGGER Waikiki Beachcomber Hotel",d:"Two shows today! Cirque's Hawaii-inspired acrobatic spectacular.",g:"Show",l:"https://www.cirquedusoleil.com/auana"},
+{n:"Margaret Cho — Live Comedy",t:"7:00 PM",w:"Hawaii Theatre",d:"Iconic Korean American comedian on her national tour. Skewering fascism, AI, billionaires.",g:"Comedy",l:"https://www.hawaiitheatre.com/"},
+{n:"CloZee",t:"Evening",w:"Wet 'n' Wild Hawaii, Kapolei",d:"French electronic/world bass artist live.",g:"Concert",l:"https://www.clozee.com/"},
+{n:"Anime Rave",t:"Night",w:"The Republik",d:"Anime-themed rave party.",g:"Nightlife",l:"https://www.jointherepublik.com/"},
+{n:"WeTouchGrass",t:"Evening",w:"The Republik",d:"Electronic music event.",g:"Nightlife",l:"https://www.jointherepublik.com/"},
+{n:"DJ Mandy",t:"Night",w:"HB Social Club",d:"DJ set at one of Honolulu's intimate spots.",g:"Nightlife",l:"https://www.instagram.com/hbsocialclub/"},
+{n:"CRSB",t:"Night",w:"Secret Spot Honolulu",d:"Live music at a hidden Honolulu venue.",g:"Concert"},
+{n:"Fear and Misery in the Third Reich",t:"Evening",w:"Kennedy Theatre, UH Manoa",d:"Brecht's powerful play — opening night. Through May 2.",g:"Theatre",l:"https://manoa.hawaii.edu/liveonstage/"},
+{n:"Panji and the Lost Princess",t:"Afternoon",w:"Kennedy Theatre, UH Manoa",d:"Balinese shadow puppetry. Second to last performance.",g:"Theatre",l:"https://manoa.hawaii.edu/liveonstage/"},
+{n:"Rhea Lana's Upscale Resale",t:"All Day",w:"Various",d:"Multi-day consignment shopping. Through May 2.",g:"Shopping",l:"https://honolulu.rhealana.com/"}
+]},
+{date:"Apr 26",day:"Sunday",label:"",ev:[
+{n:"Ala Moana Keiki Hula Show",t:"1:00 PM",w:"Ala Moana Centerstage",d:"Free Sunday kids' hula show. Adorable.",g:"Hula",l:"https://www.alamoanacenter.com/"},
+{n:"Royal Hawaiian Band — Sunday Concert",t:"2:00 PM",w:"Kapiolani Park Bandstand",d:"Free outdoor concert. Bring a picnic blanket.",g:"Free",l:"https://www.rhb-music.com/"},
+{n:"Ala Moana Center Daily Hula Show",t:"5:00–5:20 PM",w:"Ala Moana Centerstage",d:"Free daily hula.",g:"Hula"},
+{n:"Kawaii Kon 2026 — Final Day",t:"All Day",w:"Hawaii Convention Center",d:"Last day. Final Artist Alley, panels, cosplay, closing ceremonies.",g:"Festival",l:"https://kawaiikon.com/"},
+{n:"Cirque du Soleil: ʻAuana",t:"5:30 PM",w:"OUTRIGGER Waikiki Beachcomber Hotel",d:"Sunday matinee of Cirque's Hawaii show.",g:"Show",l:"https://www.cirquedusoleil.com/auana"},
+{n:"Frankie Moreno at Blue Note",t:"6:30 & 9:00 PM",w:"Blue Note Hawaii",d:"Vegas-style entertainer. High-energy.",g:"Concert",l:"https://www.bluenotejazz.com/hawaii/"},
+{n:"Panji and the Lost Princess — Closing",t:"Afternoon",w:"Kennedy Theatre, UH Manoa",d:"Final performance.",g:"Theatre",l:"https://manoa.hawaii.edu/liveonstage/"},
+{n:"Blu's Hanging — Closing Night",t:"Evening",w:"Kumu Kahua Theatre",d:"Last performance.",g:"Theatre",l:"https://www.kumukahua.org/"},
+{n:"Whale Watching (Final Days of Season)",t:"Morning tours",w:"Departs Waikiki / Waianae",d:"Tail end of humpback season. Last chance!",g:"Nature",l:"https://www.sailholokai.com/adventures-cruises/whale-watching-sail/"}
+]},
+{date:"Apr 27",day:"Monday",label:"",ev:[
+{n:"Kilohana Hula Show",t:"9:30–10:30 AM",w:"Kūhiō Beach Hula Mound",d:"Free morning hula with ocean backdrop. Mon–Wed.",g:"Hula"},
+{n:"Ala Moana Center Daily Hula Show",t:"5:00–5:20 PM",w:"Ala Moana Centerstage",d:"Free daily hula.",g:"Hula"},
+{n:"Ala Moana Pau Hana Music Series",t:"5:30–6:30 PM",w:"Ala Moana ʻEwa Wing Stage",d:"Free live music.",g:"Free"},
+{n:"O Nā Lani Sunset Stories Hula Show",t:"6:00 PM",w:"International Market Place",d:"Torch-lighting + Polynesian dance. Mon/Wed/Fri.",g:"Hula",l:"https://shopinternationalmarketplace.com/"},
+{n:"Waikiki Beach Walk Live Music",t:"Afternoon/Evening",w:"Waikiki Beach Walk",d:"Free live Hawaiian music along the Beach Walk.",g:"Free",l:"https://www.waikikibeachwalk.com/"},
+{n:"Aloha Bricks '26 (LEGO Exhibition)",t:"9 AM–5 PM",w:"Bishop Museum",d:"Family-friendly LEGO exhibition.",g:"Family",l:"https://www.bishopmuseum.org/Bricks/"},
+{n:"House of Sakura Pop-Up Bar",t:"Evenings",w:"Prince Waikiki",d:"Cherry blossom pop-up continues.",g:"Nightlife",l:"https://www.princewaikiki.com/"},
+{n:"Dine-In SPAM® Event",t:"All Day",w:"Waikiki restaurants",d:"Post-SPAM JAM dishes still available through May 3.",g:"Food",l:"https://www.spamjamhawaii.com/"}
+]},
+{date:"Apr 28",day:"Tuesday",label:"🌺 Hula-Packed Day",ev:[
+{n:"Kilohana Hula Show",t:"9:30–10:30 AM",w:"Kūhiō Beach Hula Mound",d:"Free morning hula. Mon–Wed.",g:"Hula"},
+{n:"Free Hula Lessons",t:"11:00 AM",w:"Royal Hawaiian Center, Royal Grove",d:"Learn to hula! Free class, ages 10+. Tuesdays.",g:"Class",l:"https://www.royalhawaiiancenter.com/"},
+{n:"Kū Haʻaheo Concert",t:"4:30–6:00 PM",w:"Waikīkī Beach Walk Plaza",d:"Award-winning duo Kamanawa with live hula. Tuesdays. Free.",g:"Hula",l:"https://www.waikikibeachwalk.com/"},
+{n:"Ala Moana Center Daily Hula Show",t:"5:00–5:20 PM",w:"Ala Moana Centerstage",d:"Free daily hula.",g:"Hula"},
+{n:"Kawika Trask Trio",t:"5:30–6:30 PM",w:"Royal Hawaiian Center, Royal Grove",d:"Island melodies in Hawaiian with explanations of each dance. Tuesdays. Free.",g:"Hula",l:"https://www.royalhawaiiancenter.com/"},
+{n:"Kūhiō Beach Hula Show",t:"6:30–7:30 PM",w:"Kūhiō Beach Hula Mound",d:"Iconic sunset hula near the Duke statue. Free. Tue & Sat.",g:"Hula",l:"https://kbhulashow.wixsite.com/official"},
+{n:"Waikīkī By Moonlight",t:"Evening",w:"Kūhiō Beach Hula Mound",d:"Free evening hula and Hawaiian music on Waikiki Beach.",g:"Hula"},
+{n:"Kalapana — Live at Blue Note",t:"6:30 & 9:00 PM",w:"Blue Note Hawaii",d:"Legendary Hawaiian band. 'The Hurt', 'Black Sand', smooth island rock.",g:"Concert",l:"https://www.bluenotejazz.com/hawaii/"},
+{n:"Aswang",t:"Evening",w:"Harbors Vintage, Honolulu",d:"Live music at a cool indie venue.",g:"Concert",l:"https://www.instagram.com/harborsvintage/"},
+{n:"Fear and Misery in the Third Reich",t:"Evening",w:"Kennedy Theatre, UH Manoa",d:"Brecht's play continues.",g:"Theatre",l:"https://manoa.hawaii.edu/liveonstage/"}
+]},
+{date:"Apr 29",day:"Wednesday",label:"Golden Week 🎌",ev:[
+{n:"Kilohana Hula Show",t:"9:30–10:30 AM",w:"Kūhiō Beach Hula Mound",d:"Free morning hula. Mon–Wed.",g:"Hula"},
+{n:"Free Lauhala Weaving Class",t:"11:00 AM",w:"Royal Hawaiian Center, Bldg C Level 3",d:"Learn traditional weaving. Free, ages 10+. Wednesdays.",g:"Class",l:"https://www.royalhawaiiancenter.com/"},
+{n:"Ala Moana Center Daily Hula Show",t:"5:00–5:20 PM",w:"Ala Moana Centerstage",d:"Free daily hula.",g:"Hula"},
+{n:"Ala Moana Pau Hana Music Series",t:"5:30–6:30 PM",w:"Ala Moana ʻEwa Wing Stage",d:"Free live music.",g:"Free"},
+{n:"O Nā Lani Sunset Stories Hula Show",t:"6:00 PM",w:"International Market Place",d:"Torch-lighting + Polynesian dance. Mon/Wed/Fri.",g:"Hula",l:"https://shopinternationalmarketplace.com/"},
+{n:"Golden Week in Hawaii Begins",t:"All Day",w:"Island-wide",d:"Japanese holiday period (Apr 29–May 6). Special deals, cultural events, and Japanese-focused activities across Waikiki.",g:"Culture",l:"https://www.gohawaii.com/"},
+{n:"Kalapana — Night 2",t:"6:30 & 9:00 PM",w:"Blue Note Hawaii",d:"Second night of Kalapana. Smooth Hawaiian rock.",g:"Concert",l:"https://www.bluenotejazz.com/hawaii/"},
+{n:"Aswang — Night 2",t:"Evening",w:"Harbors Vintage",d:"Second night at Harbors Vintage.",g:"Concert",l:"https://www.instagram.com/harborsvintage/"},
+{n:"House of Sakura Pop-Up Bar",t:"Evenings",w:"Prince Waikiki",d:"Cherry blossom cocktails — extra relevant as Golden Week begins.",g:"Nightlife",l:"https://www.princewaikiki.com/"},
+{n:"Fear and Misery in the Third Reich",t:"Evening",w:"Kennedy Theatre, UH Manoa",d:"Brecht continues.",g:"Theatre",l:"https://manoa.hawaii.edu/liveonstage/"}
+]},
+{date:"Apr 30",day:"Thursday",label:"",ev:[
+{n:"Free Keiki Hula Class (Kids)",t:"11:00 AM",w:"Royal Hawaiian Center, Royal Grove",d:"Free hula for kids ages 5–10. Thursdays.",g:"Class",l:"https://www.royalhawaiiancenter.com/"},
+{n:"Ala Moana Center Daily Hula Show",t:"5:00–5:20 PM",w:"Ala Moana Centerstage",d:"Free daily hula.",g:"Hula"},
+{n:"Hōlei Trio at Royal Grove",t:"5:30–6:30 PM",w:"Royal Hawaiian Center, Royal Grove",d:"Hawaiian music with hula. Thursdays. Free.",g:"Hula",l:"https://www.royalhawaiiancenter.com/"},
+{n:"Bryan Callen — Comedy",t:"7:00 & 9:30 PM",w:"Blue Note Hawaii",d:"Actor and comedian Bryan Callen live.",g:"Comedy",l:"https://www.bluenotejazz.com/hawaii/"},
+{n:"Ray Lau",t:"7:00 PM",w:"Blue Note Hawaii",d:"Live music at Blue Note.",g:"Concert",l:"https://www.bluenotejazz.com/hawaii/"},
+{n:"Kaka'ako Thursday Fitness",t:"Afternoon",w:"Kaka'ako Waterfront Park",d:"Free outdoor fitness session.",g:"Free"},
+{n:"Fear and Misery in the Third Reich",t:"Evening",w:"Kennedy Theatre, UH Manoa",d:"Catch it before it closes May 2.",g:"Theatre",l:"https://manoa.hawaii.edu/liveonstage/"},
+{n:"Aloha Bricks '26 (LEGO Exhibition)",t:"9 AM–5 PM",w:"Bishop Museum",d:"LEGO exhibition continues.",g:"Family",l:"https://www.bishopmuseum.org/Bricks/"},
+{n:"House of Sakura Pop-Up Bar",t:"Evenings",w:"Prince Waikiki",d:"Cherry blossom pop-up continues.",g:"Nightlife",l:"https://www.princewaikiki.com/"},
+{n:"Visiting Master: Ray Carbullido",t:"Ongoing",w:"Halekulani Hotel",d:"'Explorations of Self' — closing May 2.",g:"Art",l:"https://www.halekulani.com/"},
+{n:"Dine-In SPAM® Event",t:"All Day",w:"Waikiki restaurants",d:"Post-SPAM JAM dishes through May 3.",g:"Food",l:"https://www.spamjamhawaii.com/"}
+]}
+];
+
+let ai=0;
+const $=s=>document.getElementById(s);
+const total=D.reduce((s,d)=>s+d.ev.length,0);
+$("tot").textContent=total+" events across 9 days";
+
+function r(){
+  const d=D[ai];
+  $("tabs").innerHTML=D.map((dy,i)=>`<button class="tab${i===ai?" a":""}" data-i="${i}"><div class="dy">${dy.day.slice(0,3)}</div>${dy.date}<div class="ct">${dy.ev.length}</div></button>`).join("");
+  $("tabs").querySelectorAll(".tab").forEach(b=>b.onclick=()=>{ai=+b.dataset.i;r()});
+  $("dh").innerHTML=`<h2>${d.day}, ${d.date}</h2>${d.label?`<span class="lb">${d.label}</span>`:""}<div class="ec">${d.ev.length} event${d.ev.length!==1?"s":""}</div>`;
+  $("lst").innerHTML=d.ev.map(e=>{
+    const c=TC[e.g]||"#666";
+    return `<div class="ev">
+      <div class="ev-top"><h3>${e.n}</h3><span class="tg" style="background:${c}">${e.g}</span></div>
+      <div class="ev-meta"><span>🕐 ${e.t}</span><span>📍 ${e.w}</span></div>
+      <p>${e.d}</p>
+      ${e.l?`<a href="${e.l}" target="_blank" rel="noopener noreferrer" style="color:${c};background:${c}12;border:1.5px solid ${c}30">More info ↗</a>`:""}
+    </div>`;
+  }).join("");
+}
+r();
+</script>
+</body>
+</html>
